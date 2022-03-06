@@ -77,27 +77,34 @@
         </p>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-12, col-xl-6">
+    <div class="row">
+      <div class="col-lg-12, col-xl-12">
         <h5>Data cleaning</h5>
         <p class="font-weight-bold">
           Converting the number answer into readable text
         </p>
         <p>
-          I am mostly using calculated column to convert the number into readable 
-          text instead of conditional column in the data queries. There is many 
-          instance of correspond value to text, and using calculated column 
-          I can 'cut and paste'.
+          I am mostly using calculated column to convert the number into
+          readable text instead of conditional column in the data queries. There
+          is many instance of correspond value to text, and using calculated
+          column I can 'cut and paste'.
         </p>
         <pre>
-          <code>Brand = CONCATENATE("Brand ", 'Survery Data'[Which brand comes to mind as your top choice?])</code>
-        </pre>
-        <pre>
-          <code>channel = SWITCH('Survery Data'[Where have you seen or heard about our brand recently?],0, "No Answer", 1, "Friends", 2, "Family", 3, "Collegues", 4, "Social Media", 5, "Advertisement" , 6, "Instore", 7, "Other")</code>
-        </pre>
-        <pre>
           <code>
-            customerType = if('Survery Data'[Are you first time buyer?]=1, "New", if(AND('Survery Data'[Have you purchased our product before?],if('Survery Data'[I Look for other products before buying our product]'<'4,1,0)),"Loyal", "No purchase yet"))
+            Brand = CONCATENATE("Brand ", 
+            'Survery Data'[Which brand comes to mind as your top choice?])
+            </code>
+          <code>
+            channel = SWITCH('Survery Data'[Where have you seen or heard 
+            about our brand recently?],0, "No Answer", 1, "Friends", 2, 
+            "Family", 3, "Collegues", 4, "Social Media", 5, "Advertisement" , 
+            6, "Instore", 7, "Other")
+            </code>
+          <code>
+            customerType = if('Survery Data'[Are you first time buyer?]=1, 
+            "New", if(AND('Survery Data'[Have you purchased our product 
+            before?],if('Survery Data'[I Look for other products before 
+            buying our product]&lt;4,1,0)),"Loyal", "No purchase yet"))
           </code>
         </pre>
         <p></p>
