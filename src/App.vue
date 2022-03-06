@@ -41,6 +41,13 @@ $primary: rgb(15, 148, 231);
   background: #e70;
 }
 
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+
 #app {
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
