@@ -59,8 +59,8 @@ const log = logEvent(analytics, "page_view", {
 });
 log;
 export default {
-  name: "Assignment4",
-  title: "Assignment 4",
+  name: "Assignment6",
+  title: "Assignment 6",
 };
 </script>
 
