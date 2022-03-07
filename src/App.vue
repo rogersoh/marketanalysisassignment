@@ -1,8 +1,10 @@
 <template>
   <div class="container">
     <div id="nav">
-      <router-link to="/">Assignment4</router-link>|
-      <router-link to="/assignment6">Assignment6</router-link>
+      <router-link to="/">Assignment 4</router-link> |
+      <router-link to="/Assignment5"> Assignment 5</router-link> |
+      <router-link to="/Assignment6"> Assignment 6</router-link> |
+      <router-link to="/Project"> Project</router-link>
     </div>
     <router-view />
   </div>

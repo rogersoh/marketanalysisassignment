@@ -18,7 +18,7 @@
             class="embed-responsive-item"
             title="Market Analysis assignment 6 Soh Eng Khiong"
             width="1024"
-            height="600"
+            height="612"
             src="https://app.powerbi.com/view?r=eyJrIjoiNGUxNDllZTUtZGNkYS00MmM2LWIyYTEtZWRjNjUyZTA1ZTQ5IiwidCI6IjE5YjYyNGNlLTUyNGItNDE1MS05YjU4LWE4ZjBkYTU3NGFlYSIsImMiOjEwfQ%3D%3D"
             frameborder="1"
             allowFullScreen="true"
