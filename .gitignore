@@ -1,9 +1,11 @@
 .DS_Store
-.firebase
+
 node_modules
 /dist
 /src/assets/image
 
+# local build and cache files
+.firebase
 
 # local env files
 .env.local
