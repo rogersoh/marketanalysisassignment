@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h1>Project: Marketing Analytics of Foood Chain</h1>
+        <h1>Project: Marketing Analytics of Food Chain</h1>
         <div class="embed-responisve embed-responsive-16by9">
           <iframe
             class="embed-responsive-item"
@@ -22,14 +22,22 @@
     <div class="row justify-content-center">
       <div class="col-lg-12, col-xl-6">
         <h5>My understanding and assumption of the dataset</h5>
-        <p>
-          <span class="font-weight-bold">Outlet</span>Outlet in the sale report
-          refer to the Store name. S1 is Store 1 and so on.
-        </p>
-        <p>
-          I assume the survey is done for the store customer as many questions
-          are related to the quality and services of the store.
-        </p>
+        <p>Assumption I make:</p>
+        <ul>
+          <li>
+            Survey question respondance are all F&B Fast-Food customer and it
+            was done in many location, not only in Popfiery store.
+          </li>
+          <li>
+            The surveyed responses are all related to their favourite fast food
+            store.
+          </li>
+          <li>
+            The preference store is referred to the store of their favourite
+            fast food outlet. The Store 1 to 5 referred to the respestive fast
+            food outlet store.
+          </li>
+        </ul>
       </div>
       <div class="col-lg-12, col-xl-6">
         <h5>My choice of the PowerBi layout</h5>
@@ -77,7 +85,7 @@
           uses the 3 character from the left of text of the switch condition.
         </p>
         <p>
-          The Montly spend potential calculate the potential spending of the
+          The Monthly spend potential calculate the potential spending of the
           surveyed customer in our store.
         </p>
         <pre>
@@ -105,6 +113,27 @@
             Store = CONCATENATE("Store ", RIGHT(PopfireySales[Outlet],1))
           </code>
         </pre>
+      </div>
+      <div class="col-lg-12, col-xl-12">
+        <h5>Visualisation and relationship between table</h5>
+        <p>
+          I have created 2 tables. Date and F&B to link the datasets and also as
+          the slicer
+        </p>
+        <p>The relationship link between the table is as follows.</p>
+        <img
+          class="img-fluid"
+          src="../assets/image/module5/Relationship.svg"
+          alt="Relationship between tables"
+          width="800px"
+        />
+        <p></p>
+        <p>
+          The visuals are grouped into different dashboards. “Overview”
+          summarises the key data for the top management. At the same time, the
+          “Survey”, “Delivery”, and “Sales” dashboards are for management to
+          drill deeper into the data to understand the situation.
+        </p>
       </div>
     </div>
   </div>
