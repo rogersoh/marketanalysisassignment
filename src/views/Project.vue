@@ -29,13 +29,15 @@
             was done in many location, not only in Popfiery store.
           </li>
           <li>
-            The surveyed responses are all related to their favourite fast food
-            store.
+            The surveyed responses are mostly related to their favourite fast
+            food store. Except for question asking about awareness,
+            recommendation, and Preferred store are related to Popfiery.
           </li>
           <li>
-            The preference store is referred to the store of their favourite
-            fast food outlet. The Store 1 to 5 referred to the respestive fast
-            food outlet store.
+            The preference store, Store 1 to 5 referred to the different type of
+            Popfiery store and they are all located in different States.
+            Possible is that Store 1 is those mega-store restaurant with large
+            sitting capacity.
           </li>
         </ul>
       </div>
@@ -137,6 +139,8 @@
       </div>
     </div>
   </div>
+  <p></p>
+  <p></p>
 </template>
 
 <script>
