@@ -39,6 +39,14 @@
             Possible is that Store 1 is those mega-store restaurant with large
             sitting capacity.
           </li>
+          <li>
+            The questionaire for the survey is at
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSejUmYXz461d1_0WuI32a9doTqvmZuhvr8D0i9lVtAx4yrRdw/viewform?usp=sf_link"
+            >
+              google survey form</a
+            >
+          </li>
         </ul>
       </div>
       <div class="col-lg-12, col-xl-6">

@@ -4,6 +4,7 @@ import Assignment4 from "../views/Assignment4.vue";
 import Assignment5 from "../views/Assignment5.vue";
 import Assignment6 from "../views/Assignment6.vue";
 import Project from "../views/Project.vue";
+import Capstone from "../views/Capstone.vue";
 import Covid19 from "../views/Covid.vue";
 
 const routes = [
@@ -23,6 +24,10 @@ const routes = [
   {
     path: "/Project",
     component: Project,
+  },
+  {
+    path: "/Capstone",
+    component: Capstone,
   },
   {
     path: "/Covid",
