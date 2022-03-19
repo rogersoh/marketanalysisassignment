@@ -55,7 +55,11 @@
         </ul>
       </div>
       <div class="col-lg-12, col-xl-12">
-        <h5>Activity 1</h5>
+        <h5>
+          Activity 1: Define the retail operations management tasks and
+          inventory planning processes required to build a long-term
+          relationship with its customers
+        </h5>
         <p class="font-weight-bold">Functional Specification:</p>
         <ul>
           <li>
@@ -253,7 +257,7 @@
         <p class="font-weight-bold">Relationship between tables<br /><br /></p>
       </div>
       <div class="col-lg-12, col-xl-12">
-        <h5>Activity 2</h5>
+        <h5>Activity 2: Plan the inventory to measure the performance.</h5>
         <img
           class="img-fluid"
           src="../assets/image/capstone/otb.png"
@@ -275,7 +279,11 @@
         </p>
       </div>
       <div class="col-lg-12, col-xl-12">
-        <h5>Activity 3</h5>
+        <h5>
+          Activity 3: Determine the appropriate level and depth of information
+          required for the management to take informed decisions and prepare the
+          data.
+        </h5>
         <p class="font-weight-bold">Cleaning the data</p>
         <p>
           Check for missing data, delete column that have 100% blank data, or
@@ -376,6 +384,71 @@
           visualisations
         </p>
         <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="embed-responisve embed-responsive-16by9">
+          <iframe
+            class="embed-responsive-item"
+            title="Analytic Implementation Project Capstone"
+            width="1024"
+            height="612"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZTMyNTU5MWItNmI2YS00NjMwLWEzODYtMWRlYzg2YzBiMTM5IiwidCI6IjE5YjYyNGNlLTUyNGItNDE1MS05YjU4LWE4ZjBkYTU3NGFlYSIsImMiOjEwfQ%3D%3D&pageName=ReportSection9d229e071c34765dc602"
+            frameborder="1"
+            allowFullScreen="true"
+          ></iframe>
+        </div>
+      </div>
+      <div class="col-12">
+        <h5>Activity 4: Analyse the store performance</h5>
+        <p class="font-weight-bold">Calculated column and measures</p>
+        <table class="table table-bordered">
+          <tr class="font-weight-bold">
+            <td>Table Name</td>
+            <td>Calculated column or measure</td>
+          </tr>
+
+          <tr>
+            <td>FactSales</td>
+            <td>
+              <p>grossSale = FactSales[SalesAmount]-FactSales[ReturnAmount]</p>
+              <p>
+                grossSale_Area = DIVIDE( SUM(FactSales[grossSale]),
+                SUM(DimStore[SellingAreaSize]))
+              </p>
+              <p>
+                grossSale_Area = DIVIDE( SUM(FactSales[grossSale]),
+                SUM(DimStore[SellingAreaSize]))
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>DimStore</td>
+            <td>
+              <p>
+                lat = MID(DimStore[GeoLocation], FIND("
+                ",DimStore[GeoLocation],8)+1,
+                FIND(")",DimStore[GeoLocation])-FIND(" ",
+                DimStore[GeoLocation],8) - 1 )
+              </p>
+              <p>
+                long = MID(DimStore[GeoLocation],
+                FIND("(",DimStore[GeoLocation])+1, FIND(" ",
+                DimStore[GeoLocation], 8)-FIND("(",DimStore[GeoLocation])-1)
+              </p>
+            </td>
+          </tr>
+        </table>
+        <p>
+          <span class="font-weight-bold">Filter on Store page:</span>
+          CloseReason is not Relocation or Store
+        </p>
+        <p>
+          Filter is done to remove closed store from the store analysis data
+        </p>
       </div>
     </div>
   </div>
