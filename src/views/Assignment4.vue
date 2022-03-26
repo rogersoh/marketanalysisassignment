@@ -48,7 +48,7 @@
           I assume all shopper are aware of our brand, and the question "Where
           have you seen or heard about our brand recently?" have covered all
           possible channel on where they get awareness of our brand. However,
-          there is some who answered "0" in the survey, I will that is as they
+          there is some who answered "0" in the survey, I will assume that they
           did not answered that question.
         </p>
       </div>

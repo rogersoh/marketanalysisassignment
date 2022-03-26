@@ -9,6 +9,13 @@
       <router-link to="/Covid"> Covid-19</router-link>
     </div>
     <router-view />
+    <div class="row justify-content-center">
+      <div class="col-lg-6 mt-3">
+        <p>Content done by Roger Soh<br /></p>
+        <a href="mailto:data_analytics@lmogg.com?"> Send Feedback </a>
+        <br /><br />
+      </div>
+    </div>
   </div>
 </template>
 

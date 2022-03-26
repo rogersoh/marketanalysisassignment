@@ -296,34 +296,34 @@
             <td>Reason for delete</td>
           </tr>
           <tr>
-            <td>All tables</td>
+            <td class="font-weight-bold">All tables</td>
             <td>ETLLoadID, LoadDate, UpdateDate</td>
             <td>Not useful for data analysis</td>
           </tr>
           <tr>
-            <td>DimEmployee</td>
+            <td class="font-weight-bold">DimEmployee</td>
             <td>Title</td>
             <td>100% Blank data</td>
           </tr>
           <tr>
-            <td>DimProduct</td>
+            <td class="font-weight-bold">DimProduct</td>
             <td>
               ImageURL, ProductURL, StopSaleDate, SizeRange, SizeUnitMeasureID
             </td>
             <td>100% Blank data</td>
           </tr>
           <tr>
-            <td>DimPromotion</td>
+            <td class="font-weight-bold">DimPromotion</td>
             <td>MinQuantity, MaxQuantity</td>
             <td>100% Blank data</td>
           </tr>
           <tr>
-            <td>FactInventory</td>
+            <td class="font-weight-bold">FactInventory</td>
             <td>CurrencyKey</td>
             <td>Not useful for data analysis, all currency key is 1.</td>
           </tr>
           <tr>
-            <td>FactSales</td>
+            <td class="font-weight-bold">FactSales</td>
             <td>CurrencyKey</td>
             <td>Not useful for data analysis, all currency key is 1.</td>
           </tr>
@@ -336,7 +336,7 @@
             <td>Transform/Data category</td>
           </tr>
           <tr>
-            <td>DimGeography</td>
+            <td class="font-weight-bold">DimGeography</td>
             <td>
               ContinentName<br />
               CityName<br />
@@ -351,19 +351,19 @@
             </td>
           </tr>
           <tr>
-            <td>DimProduct</td>
+            <td class="font-weight-bold">DimProduct</td>
             <td>UnitCost, UnitPrice</td>
             <td>Currency</td>
           </tr>
           <tr>
-            <td>FactSales</td>
+            <td class="font-weight-bold">FactSales</td>
             <td>
               UnitCost, UnitPrice, DiscountAmount, ReturnAmount, SalesAmount
             </td>
             <td>Currency</td>
           </tr>
           <tr>
-            <td>DimCustomer</td>
+            <td class="font-weight-bold">DimCustomer</td>
             <td>CustomerLabel</td>
             <td>
               Text (some of the customer labels contain letters so need to
@@ -371,7 +371,7 @@
             </td>
           </tr>
           <tr>
-            <td>DimEmployee</td>
+            <td class="font-weight-bold">DimEmployee</td>
             <td>Status</td>
             <td>
               Created calculated column Status_edited to replace "NULL" in
@@ -404,6 +404,22 @@
       </div>
       <div class="col-12">
         <h5>Activity 4: Analyse the store performance</h5>
+        <p>
+          KPI selected for the store are the Gross Sale per Selling Area and
+          Gross Sale per employee. Instead of only comparing the total gross
+          sale amount, the index normalises the store for better performance
+          evaluation. And the store is further drilled down into its store type
+          for comparison among the same type.
+        </p>
+        <p>
+          As there is many stores, we have the top 10 and bottom 10 performing
+          stores in each dashboard.
+        </p>
+        <p>
+          The SellingAreaSize of the Contosa Asia Online Store is significant
+          times higher than the other online store. The area is 9 time higher
+          compare to the 2nd largest online store.
+        </p>
         <p class="font-weight-bold">Calculated column and measures</p>
         <table class="table table-bordered">
           <tr class="font-weight-bold">
@@ -412,21 +428,38 @@
           </tr>
 
           <tr>
-            <td>FactSales</td>
+            <td class="font-weight-bold">FactSales</td>
             <td>
-              <p>grossSale = FactSales[SalesAmount]-FactSales[ReturnAmount]</p>
+              <p class="font-weight-bold">Column</p>
+              <p>COGS = FactSales[UnitCost]* FactSales[SalesQuantity]</p>
               <p>
-                grossSale_Area = DIVIDE( SUM(FactSales[grossSale]),
-                SUM(DimStore[SellingAreaSize]))
+                netSales =
+                FactSales[totalSales]-FactSales[DiscountAmount]-FactSales[ReturnAmount]
               </p>
               <p>
-                grossSale_Area = DIVIDE( SUM(FactSales[grossSale]),
+                totalSales = FactSales[UnitPrice] * FactSales[SalesQuantity]
+              </p>
+              <p class="font-weight-bold">Measure</p>
+              <p>countMonth = DISTINCTCOUNT(FactSales[month])</p>
+              <p>
+                grossMargin = sum(FactSales[totalSales])-sum(FactSales[COGS])
+              </p>
+              <p>
+                margin%_measure = DIVIDE((SUM(FactSales[UnitPrice])-
+                SUM(FactSales[UnitCost])), SUM(FactSales[UnitPrice]))
+              </p>
+              <p>
+                salePerEmployee = DIVIDE( SUM(FactSales[netSales]),
+                sum(DimStore[EmployeeCount]))
+              </p>
+              <p>
+                SPSF = divide( sum(FactSales[netSales]),
                 SUM(DimStore[SellingAreaSize]))
               </p>
             </td>
           </tr>
           <tr>
-            <td>DimStore</td>
+            <td class="font-weight-bold">DimStore</td>
             <td>
               <p>
                 lat = MID(DimStore[GeoLocation], FIND("
@@ -448,6 +481,97 @@
         </p>
         <p>
           Filter is done to remove closed store from the store analysis data
+        </p>
+      </div>
+      <div class="col-12">
+        <h5>
+          Activity 5: Analyse the sales data and understand the product demand
+        </h5>
+        <ul>
+          <li>Decide on the suitable KPI to identify the product movement.</li>
+          <li>
+            Analyse the product movement based on location, category, supplier,
+            and others based on the datapoints
+          </li>
+          <li>
+            Recommend the list of products to purchase to manage the inveontry
+            efficiently.
+          </li>
+          <li>
+            Recommend the list of products to markup or markdown the price based
+            on the movement.
+          </li>
+        </ul>
+
+        <p class="font-weight-bold">Reorder</p>
+        <p>
+          Criteria for reordering is when the stock on hand quantity is less
+          than the minimum day in-stock quantity. I set the reorder quantity at
+          10% higher to meet the minimum day in-stock quantity, and the reorder
+          cost is the amount needed to place this order. The reorder quantity
+          and cost are created as a calculated column instead of a new measure
+          to allow for more effective subtotal in the various visual groups.
+        </p>
+        <p class="font-weight-bold">Markdown</p>
+        <p>
+          Criteria for markdown is when the stock on hand quantity is more than
+          the max day in-stock quantity. We want to increase the sales quantity
+          of these markdown products to reduce the inventory space and the
+          inventory cost. The Reorder and Markdown are based on the latest month
+          and year in the FactInventory.
+        </p>
+        <p class="font-weight-bold">Markup</p>
+        <p>
+          Criteria for markup is the top 3 selling products in 2009. The
+          dashboard for the mark up can be drilled down for Country, Store,
+          Product Category and Product Subcategory for the management to adjust
+          according to individual country and store.
+        </p>
+        <p class="font-weight-bold">Calculated Column and Measures</p>
+        <table class="table table-bordered">
+          <tr class="font-weight-bold">
+            <td>Table</td>
+            <td>Calculated Column and Measure</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold">FactInventory</td>
+            <td>
+              <p class="font-weight-bold">Columns</p>
+              <p>
+                markdown? =
+                if(FactInventory[DaysInStock]>FactInventory[MaxDayInStock],TRUE(),FALSE())
+              </p>
+              <p>
+                reorder? =
+                if(FactInventory[MinDayInStock]>FactInventory[DaysInStock],TRUE(),FALSE())
+              </p>
+              <p>
+                reorderCost = IF(FactInventory[reorder?],
+                FactInventory[reorderQty] * FactInventory[UnitCost], BLANK())
+              </p>
+              <p>
+                reorderQty = IF(FactInventory[reorder?], ROUNDUP(
+                (DIVIDE(FactInventory[OnHandQuantity],
+                FactInventory[DaysInStock])*FactInventory[MinDayInStock]-FactInventory[OnHandQuantity])
+                * 1.1, 0), BLANK())
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold">FactSales</td>
+            <td>
+              <p class="font-weight-bold">Measures</p>
+              <p>
+                return % = DIVIDE( SUM(FactSales[ReturnQuantity]) ,
+                SUM(FactSales[SalesQuantity] ))
+              </p>
+              <p>UPT = sum(FactSales[SalesQuantity])/COUNTROWS(FactSales)</p>
+            </td>
+          </tr>
+        </table>
+        <p>
+          The dashboards for inventory product movement is Product Movement 1,
+          Product Movement 2, Product Reorder, Mark down, and Mark up
         </p>
       </div>
     </div>
