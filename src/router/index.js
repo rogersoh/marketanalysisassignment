@@ -6,6 +6,7 @@ import Assignment6 from "../views/Assignment6.vue";
 import Project from "../views/Project.vue";
 import Capstone from "../views/Capstone.vue";
 import Covid19 from "../views/Covid.vue";
+import ConsumerItemPrice from "../views/ConsumerItemPrice.vue";
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
   {
     path: "/Covid",
     component: Covid19,
+  },
+  {
+    path: "/ConsumerItemPrice",
+    component: ConsumerItemPrice,
   },
   {
     path: "/about",

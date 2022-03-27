@@ -90,6 +90,13 @@
               </div>
               <div class="container">
                 <span v-html="task.contentHtmlText"></span>
+                <div v-if="task.image !== ''">
+                  <img
+                    v-bind:src="
+                      require(`../assets/image/capstone/${task.image}`)
+                    "
+                  />
+                </div>
               </div>
               <div class="modal-footer">
                 <button
@@ -132,44 +139,51 @@ export default {
           target: "#objective1",
           id: "objective1",
           contentHtmlText: objectivetext(),
+          image: "",
         },
         {
           Name: "Active 1: Define task",
           LongName:
             "Activity 1: Define the retail operations management tasks and inventory planning processes required to build a long-term relationship with its customers",
-          target: "#Cactivity1",
-          id: "Cactivity1",
+          target: "#Activity1",
+          id: "Activity1",
           contentHtmlText: activity1text(),
+          image: "relationshiptable.svg",
         },
         {
           Name: "Activity 2: Plan the inventory to measure the performance.",
           LongName:
             "Activity 2: Plan the inventory to measure the performance.",
-          target: "#Cactivity2",
-          id: "Cactivity2",
+          target: "#Activity2",
+          id: "Activity2",
           contentHtmlText: activity2text(),
+          image: "otb.png",
         },
         {
           Name: "Activity 3: Define data point requirements",
           LongName:
             "Activity 3: Determine the appropriate level and depth of information required for the management to take informed decisions and prepare the data.",
-          target: "#Cactivity3",
-          id: "Cactivity3",
+          target: "#Activity3",
+          id: "Activity3",
           contentHtmlText: activity3text(),
+          image: "",
         },
         {
           Name: "Activity 4: Analyse Store Performance",
           LongName: "Activity 4: Analyse the store performance",
-          target: "#Cactivity4",
-          id: "Cactivity4",
+          target: "#Activity4",
+          id: "Activity4",
           contentHtmlText: activity4text(),
+          image: "",
         },
         {
           Name: "Activity 5: Analyse Product Movement",
-          LongName: "Activity 5: Analyse the sales data and understand the product demand",
-          target: "#Cactivity5",
-          id: "Cactivity5",
+          LongName:
+            "Activity 5: Analyse the sales data and understand the product demand",
+          target: "#Activity5",
+          id: "Activity5",
           contentHtmlText: activity5text(),
+          image: "",
         },
         /* {
           Name: "",
@@ -236,7 +250,7 @@ export default {
     }
     function activity1text() {
       return `
-                    <div class="col-lg-12, col-xl-12">
+          <div class="col-lg-12, col-xl-12">
             <p class="font-weight-bold">Functional Specification:</p>
             <ul>
               <li>
@@ -427,36 +441,26 @@ export default {
                 </td>
               </tr>
             </table>
-            <img
-              class="img-fluid"
-              src="../assets/image/capstone/relationshiptable.svg"
-              alt="Relationship between tables"
-              width="800px"
-            />
             <p class="font-weight-bold">
-              Relationship between tables<br /><br />
+              Relationship between tables
             </p>
           </div>`;
     }
     function activity2text() {
-      return `          <div class="col-lg-12, col-xl-12">
-            <img
-              class="img-fluid"
-              src="../assets/image/capstone/otb.png"
-              alt="Open-to-buy 6 months plans"
-            />
-            <><p>
-                August's beginning of month inventory is lower than July because
-                of the lower sales volume expected in August. And it will drop
-                further in September and October
+      return `
+          <div class="col-lg-12, col-xl-12">
+            <p>
+              August's beginning of month inventory is lower than July because
+              of the lower sales volume expected in August. And it will drop
+              further in September and October
+            </p><p>
+                There is a lower inventory level for September and October and an
+                increase in the markdown because these months have significant
+                sales.
               </p><p>
-                  There is a lower inventory level for September and October and an
-                  increase in the markdown because these months have significant
-                  sales.
-                </p><p>
-                  December has high sales volume because of the holiday seasons and
-                  year-end. Thus we need to increase the inventory. There is no need
-                  for markdown as the sales volume is high.
+                December has high sales volume because of the holiday seasons and
+                year-end. Thus we need to increase the inventory. There is no need
+                for markdown as the sales volume is high.
           </div>`;
     }
     function activity3text() {
@@ -578,7 +582,7 @@ export default {
             <p>
               The SellingAreaSize of the Contosa Asia Online Store is
               significant times higher than the other online store. The area is
-              9 time higher compare to the 2nd largest online store.
+              90 times bigger compare to the 2nd largest online store.
             </p>
             <p class="font-weight-bold">Calculated column and measures</p>
             <table class="table table-bordered">
@@ -643,6 +647,7 @@ export default {
             <p>
               Filter is done to remove closed store from the store analysis data
             </p>
+            <p>The dashboards for Store performance is Store, Store Top 10, and Store Bottom 10</p>
           </div>`;
     }
     function activity5text() {

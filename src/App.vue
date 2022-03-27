@@ -6,7 +6,8 @@
       <router-link to="/Assignment6"> Assignment 6</router-link> |
       <router-link to="/Project"> Project</router-link> |
       <router-link to="/Capstone"> Project Capstone</router-link> |
-      <router-link to="/Covid"> Covid-19</router-link>
+      <router-link to="/Covid"> Covid-19</router-link> |
+      <router-link to="/ConsumerItemPrice"> Consumer Item Price</router-link>
     </div>
     <router-view />
     <div class="row justify-content-center">
