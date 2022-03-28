@@ -13,30 +13,51 @@ const routes = [
     path: "/",
     name: "Assignment 4",
     component: Assignment4,
+    meta: {
+      title: "Market Analytics Assignment 4",
+    },
   },
   {
     path: "/Assignment5",
     component: Assignment5,
+    meta: {
+      title: "Market Analytics Assignment 5",
+    },
   },
   {
     path: "/Assignment6",
     component: Assignment6,
+    meta: {
+      title: "Market Analytics Assignment 6",
+    },
   },
   {
     path: "/Project",
     component: Project,
+    meta: {
+      title: "Market Analytics Project",
+    },
   },
   {
     path: "/Capstone",
     component: Capstone,
+    meta: {
+      title: "Analytics Implementation Capstone Project",
+    },
   },
   {
     path: "/Covid",
     component: Covid19,
+    meta: {
+      title: "Covid-19 situation",
+    },
   },
   {
     path: "/ConsumerItemPrice",
     component: ConsumerItemPrice,
+    meta: {
+      title: "Consumer Item Price",
+    },
   },
   {
     path: "/about",
@@ -57,6 +78,12 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  console.log("router beforeEach");
+  document.title = `${to.meta.title}`;
+  next();
 });
 
 export default router;

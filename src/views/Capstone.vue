@@ -73,7 +73,7 @@
           aria-labelledby="taskModalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-xl">
+          <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title">
@@ -281,7 +281,7 @@ export default {
               <li>Employee performance evaluation</li>
             </ul>
             <p class="font-weight-bold">Non-Functional Specification:</p>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
               <tr>
                 <td>Performance</td>
                 <td>
@@ -332,7 +332,7 @@ export default {
               <li>Microsoft Excel</li>
               <li>Word</li>
             </ul>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
               <tr class="font-weight-bold">
                 <td>Page Name</td>
                 <td>Report.Visual</td>
@@ -470,7 +470,7 @@ export default {
               Check for missing data, delete column that have 100% blank data,
               or column that is not useful for the data analysis.
             </p>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
               <tr class="font-weight-bold">
                 <td>Table Name</td>
                 <td>Delete column</td>
@@ -511,7 +511,7 @@ export default {
               </tr>
             </table>
             <p class="font-weight-bold">Transform data</p>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
               <tr class="font-weight-bold">
                 <td>Table Name</td>
                 <td>Column</td>
@@ -585,7 +585,7 @@ export default {
               90 times bigger compare to the 2nd largest online store.
             </p>
             <p class="font-weight-bold">Calculated column and measures</p>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
               <tr class="font-weight-bold">
                 <td>Table Name</td>
                 <td>Calculated column or measure</td>
@@ -696,7 +696,7 @@ export default {
               adjust according to individual country and store.
             </p>
             <p class="font-weight-bold">Calculated Column and Measures</p>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
               <tr class="font-weight-bold">
                 <td>Table</td>
                 <td>Calculated Column and Measure</td>
@@ -707,21 +707,21 @@ export default {
                   <p class="font-weight-bold">Columns</p>
                   <p>
                     markdown? =
-                    if(FactInventory[DaysInStock]>FactInventory[MaxDayInStock],TRUE(),FALSE())
+                    if( FactInventory[DaysInStock] > FactInventory[MaxDayInStock], TRUE(), FALSE())
                   </p>
                   <p>
                     reorder? =
-                    if(FactInventory[MinDayInStock]>FactInventory[DaysInStock],TRUE(),FALSE())
+                    if( FactInventory[MinDayInStock] > FactInventory[DaysInStock], TRUE(), FALSE())
                   </p>
                   <p>
-                    reorderCost = IF(FactInventory[reorder?],
+                    reorderCost = IF( FactInventory[reorder?],
                     FactInventory[reorderQty] * FactInventory[UnitCost],
                     BLANK())
                   </p>
                   <p>
-                    reorderQty = IF(FactInventory[reorder?], ROUNDUP(
-                    (DIVIDE(FactInventory[OnHandQuantity],
-                    FactInventory[DaysInStock])*FactInventory[MinDayInStock]-FactInventory[OnHandQuantity])
+                    reorderQty = IF( FactInventory[reorder?], ROUNDUP(
+                    (DIVIDE ( FactInventory[OnHandQuantity],
+                    FactInventory[DaysInStock] ) * FactInventory[MinDayInStock] - FactInventory[OnHandQuantity] )
                     * 1.1, 0), BLANK())
                   </p>
                 </td>
@@ -731,11 +731,11 @@ export default {
                 <td>
                   <p class="font-weight-bold">Measures</p>
                   <p>
-                    return % = DIVIDE( SUM(FactSales[ReturnQuantity]) ,
-                    SUM(FactSales[SalesQuantity] ))
+                    return % = DIVIDE( SUM( FactSales[ReturnQuantity]) ,
+                    SUM( FactSales[SalesQuantity] ))
                   </p>
                   <p>
-                    UPT = sum(FactSales[SalesQuantity])/COUNTROWS(FactSales)
+                    UPT = SUM( FactSales[SalesQuantity]) / COUNTROWS(FactSales) 
                   </p>
                 </td>
               </tr>
