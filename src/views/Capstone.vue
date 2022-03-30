@@ -91,11 +91,7 @@
               <div class="container">
                 <span v-html="task.contentHtmlText"></span>
                 <div v-if="task.image !== ''">
-                  <img
-                    v-bind:src="
-                      require(`../assets/image/capstone/${task.image}`)
-                    "
-                  />
+                  <img v-bind:src="require(`../assets/image/${task.image}`)" />
                 </div>
               </div>
               <div class="modal-footer">
@@ -113,13 +109,8 @@
       </template>
     </div>
   </div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <h5></h5>
-      </div>
-    </div>
-  </div>
+
+  <div class="container"></div>
 </template>
 
 <script>
@@ -148,7 +139,7 @@ export default {
           target: "#Activity1",
           id: "Activity1",
           contentHtmlText: activity1text(),
-          image: "relationshiptable.svg",
+          image: "capstone/relationshiptable.svg",
         },
         {
           Name: "Activity 2: Plan the inventory to measure the performance.",
@@ -157,7 +148,7 @@ export default {
           target: "#Activity2",
           id: "Activity2",
           contentHtmlText: activity2text(),
-          image: "otb.png",
+          image: "capstone/otb.png",
         },
         {
           Name: "Activity 3: Define data point requirements",
@@ -185,14 +176,15 @@ export default {
           contentHtmlText: activity5text(),
           image: "",
         },
-        /* {
-          Name: "",
-          LongName: "",
-          target: "",
-          id: "",
-          contentHtmlText: "",
-        },
         {
+          Name: "Activity 6: Know your customer",
+          LongName: "Activity 6: Know your customer",
+          target: "#Activity6",
+          id: "Activity6",
+          contentHtmlText: activity6text(),
+          image: "",
+        },
+        /*{
           Name: "",
           LongName: "",
           target: "",
@@ -745,6 +737,98 @@ export default {
               1, Product Movement 2, Product Reorder, Mark down, and Mark up
             </p>
           </div>`;
+    }
+    function activity6text() {
+      return `
+    <div class="col-lg-12, col-xl-12">
+      <p>
+        Consider the suitable KPI and create the reports to understand the
+        customer.
+      </p>
+      <p>Identify the popular campaign among your customers</p>
+      <p>Identify the right marketing mix and reflect.</p>
+      <p></p>
+      <p class="font-weight-bold">KPIs</p>
+      <ul>
+        <li>
+          FDT - Foot & Digital Traffic is the number of people visiting the
+          store (it does not matter whether they had made a purchase). As the
+          data set did not measure the foot traffic, we will get just the number
+          of sales transactions.
+        </li>
+        <li>
+          Average Transaction Values: It is the average transaction amount per
+          transaction.
+        </li>
+        <li>
+          Rating – Consumer satisfaction rating. The satisfaction rating range
+          from 1 (Extremely Dissatisfied) to 5 (Extremely Satisfied)
+        </li>
+      </ul>
+      <p class="font-weight-bold">Calculated Column, Measures, and Bin</p>
+      <table class="table table-bordered table-responsive">
+        <tr class="font-weight-bold">
+          <td>Table</td>
+          <td>Calculated column, measure, bin</td>
+        </tr>
+        <tr>
+          <td>FactSales</td>
+          <td>
+            <p>Measures</p>
+            <p>
+              averageTransactionValue = SUM( FactSales[totalSales] ) /
+              COUNTROWS( FactSales )
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>DimCustomer</td>
+          <td>
+            <p>Column</p>
+            <p>
+              age = if( ISBLANK( DimCustomer[BirthDate] ), BLANK() , 2010 -
+              year( DimCustomer[BirthDate] ))
+            </p>
+            <p>
+              ratingDesc = SWITCH( DimCustomer[Rating], 1, "1 Extremely
+              Dissatisfied", 2, "2 Dissatisfied", 3, "3 Neutral", 4, "4
+              Satisfied", 5, "5 Extremely Satisfied")
+            </p>
+            <p>Bin group</p>
+            <p>
+              ageGroup = IF(INT( DimCustomer[age]/10 ) >= 8, "80 and above",
+              SWITCH( INT( DimCustomer[age]/10 ), 3, "30 - 39", 4, "40 - 49", 5,
+              "50 - 59", 6, "60 - 69", 7, "70 - 79"))
+            </p>
+            <p>
+              yearIncomeGrp = IF(DimCustomer[CustomerType] == "Company",
+              BLANK(), IF( ISBLANK( DimCustomer[YearlyIncome] ), "Not
+              Disclosed", SWITCH( INT( DimCustomer[YearlyIncome] / 50000), 0,
+              "below 50K", 1, "50K - 99K", 2, "100K - 149K", 3, "150K and above"
+              )))
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>DimPromotion</td>
+          <td>
+            <p>Column</p>
+            <p>duration = DimPromotion[EndDate] - DimPromotion[StartDate]</p>
+            <p>Measure</p>
+            <p>
+              transaction/days = COUNTX(FactSales, FactSales[SalesKey])/ SUMX(
+              DimPromotion, DimPromotion[PromotionDay])
+            </p>
+            <p>
+              MarginPerDay = (SUMX(FactSales, FactSales[netSales]) -
+              SUMX(FactSales, FactSales[COGS])) / SUMX(DimPromotion,
+              DimPromotion[PromotionDay])
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>      
+      `;
     }
   },
   name: "ProjectCapstone",
