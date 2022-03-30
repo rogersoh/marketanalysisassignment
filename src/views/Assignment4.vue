@@ -157,12 +157,12 @@
 </template>
 
 <script>
-import { logEvent } from "firebase/analytics";
+/* import { logEvent } from "firebase/analytics";
 import { analytics } from "@/firebase/config";
 const log = logEvent(analytics, "page_view", {
   page_title: "Assignment 4",
 });
-log;
+log; */
 export default {
   name: "Assignment4",
   title: "Assignment 4",
