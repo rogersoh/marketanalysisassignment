@@ -1,60 +1,74 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import Home from "../views/Home.vue";
+/* import Home from "../views/Home.vue";
 import Assignment4 from "../views/Assignment4.vue";
 import Assignment5 from "../views/Assignment5.vue";
 import Assignment6 from "../views/Assignment6.vue";
 import Project from "../views/Project.vue";
 import Capstone from "../views/Capstone.vue";
-import Covid19 from "../views/Covid.vue";
-import ConsumerItemPrice from "../views/ConsumerItemPrice.vue";
+import Covid19 from "../views/Covid.vue"; */
 
 const routes = [
   {
     path: "/",
     name: "Assignment 4",
-    component: Assignment4,
+    component: () =>
+      import(/* webpackChunkName: "Assignment4" */ "../views/Assignment4.vue"),
     meta: {
       title: "Market Analytics Assignment 4",
     },
   },
   {
     path: "/Assignment5",
-    component: Assignment5,
+    name: "Assignment5",
+    component: () =>
+      import(/* webpackChunkName: "Assignment5" */ "../views/Assignment5.vue"),
     meta: {
       title: "Market Analytics Assignment 5",
     },
   },
   {
     path: "/Assignment6",
-    component: Assignment6,
+    name: "Assignment6",
+    component: () =>
+      import(/* webpackChunkName: "Assignment6" */ "../views/Assignment6.vue"),
     meta: {
       title: "Market Analytics Assignment 6",
     },
   },
   {
     path: "/Project",
-    component: Project,
+    name: "Project",
+    component: () =>
+      import(/* webpackChunkName: "Project" */ "../views/Project.vue"),
     meta: {
       title: "Market Analytics Project",
     },
   },
   {
     path: "/Capstone",
-    component: Capstone,
+    name: "Capstone Project",
+    component: () =>
+      import(/* webpackChunkName: "Capstone" */ "../views/Capstone.vue"),
     meta: {
       title: "Analytics Implementation Capstone Project",
     },
   },
   {
     path: "/Covid",
-    component: Covid19,
+    name: "Covid",
+    component: () =>
+      import(/* webpackChunkName: "Covid" */ "../views/Covid.vue"),
     meta: {
       title: "Covid-19 situation",
     },
   },
   {
     path: "/ConsumerItemPrice",
-    component: ConsumerItemPrice,
+    name: "Consumer Item Price",
+    component: () =>
+      import(
+        /* webpackChunkName: "ConsumerItemPrice" */ "../views/ConsumerItemPrice.vue"
+      ),
     meta: {
       title: "Consumer Item Price",
     },
@@ -81,7 +95,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log("router beforeEach");
+  console.log("router beforeEach", to.meta.title);
   document.title = `${to.meta.title}`;
   next();
 });
