@@ -37,7 +37,7 @@
             title="Analytic Implementation Project Capstone"
             width="1024"
             height="612"
-            src="https://app.powerbi.com/view?r=eyJrIjoiZTMyNTU5MWItNmI2YS00NjMwLWEzODYtMWRlYzg2YzBiMTM5IiwidCI6IjE5YjYyNGNlLTUyNGItNDE1MS05YjU4LWE4ZjBkYTU3NGFlYSIsImMiOjEwfQ%3D%3D&pageName=ReportSection9d229e071c34765dc602"
+            src="https://app.powerbi.com/view?r=eyJrIjoiOWY1MGY1ZTYtNzY4Mi00ZjAxLWEyNDAtN2JiYmViMmYwNzY4IiwidCI6IjE5YjYyNGNlLTUyNGItNDE1MS05YjU4LWE4ZjBkYTU3NGFlYSIsImMiOjEwfQ%3D%3D&pageName=ReportSection3c6803a427b38b151b25"
             frameborder="1"
             allowFullScreen="true"
           ></iframe>
@@ -184,20 +184,14 @@ export default {
           contentHtmlText: activity6text(),
           image: "",
         },
-        /*{
-          Name: "",
-          LongName: "",
-          target: "",
-          id: "",
-          contentHtmlText: "",
-        },
         {
-          Name: "",
-          LongName: "",
-          target: "",
-          id: "",
-          contentHtmlText: "",
-        }, */
+          Name: "Activity 7: Evaluate your employee",
+          LongName: "Activity 7: Evaluate your employee",
+          target: "#Activity7",
+          id: "Activity7",
+          contentHtmlText: activity7text(),
+          image: "",
+        },
       ],
     };
 
@@ -774,7 +768,7 @@ export default {
         <tr>
           <td>FactSales</td>
           <td>
-            <p>Measures</p>
+            <p class="font-weight-bold">Measures</p>
             <p>
               averageTransactionValue = SUM( FactSales[totalSales] ) /
               COUNTROWS( FactSales )
@@ -784,7 +778,7 @@ export default {
         <tr>
           <td>DimCustomer</td>
           <td>
-            <p>Column</p>
+            <p class="font-weight-bold">Column</p>
             <p>
               age = if( ISBLANK( DimCustomer[BirthDate] ), BLANK() , 2010 -
               year( DimCustomer[BirthDate] ))
@@ -794,7 +788,7 @@ export default {
               Dissatisfied", 2, "2 Dissatisfied", 3, "3 Neutral", 4, "4
               Satisfied", 5, "5 Extremely Satisfied")
             </p>
-            <p>Bin group</p>
+            <p class="font-weight-bold">Bin group</p>
             <p>
               ageGroup = IF(INT( DimCustomer[age]/10 ) >= 8, "80 and above",
               SWITCH( INT( DimCustomer[age]/10 ), 3, "30 - 39", 4, "40 - 49", 5,
@@ -812,7 +806,7 @@ export default {
         <tr>
           <td>DimPromotion</td>
           <td>
-            <p>Column</p>
+            <p class="font-weight-bold">Column</p>
             <p>duration = DimPromotion[EndDate] - DimPromotion[StartDate]</p>
             <p>Measure</p>
             <p>
@@ -829,6 +823,99 @@ export default {
       </table>
     </div>      
       `;
+    }
+    function activity7text() {
+      return `<div class="col-lg-12, col-xl-12">
+      <p>
+        Evaluate the salesperson performance based on the transactions they had
+        handled and the monthly revenue.
+      </p>
+      <p>Identify top performer.</p>
+      <p></p>
+      <p class="font-weight-bold">KPIs for the salesperson's performance</p>
+      <ul>
+        <li>Sales Amount</li>
+        <li>Sales Quantity</li>
+        <li>Average Sales per person</li>
+        <li>Sales per person</li>
+        <li>Average Sales per month</li>
+      </ul>
+      <p class="font-weight-bold">Calculated Column, Measures, and Bin</p>
+      <table class="table table-bordered table-responsive">
+        <tr class="font-weight-bold">
+          <td>Table</td>
+          <td>Calculated column, measure, bin</td>
+        </tr>
+        <tr>
+          <td>DimSales</td>
+          <td>
+            <p class="font-weight-bold">Column</p>
+            <p>
+              yearMonth = COMBINEVALUES( "-", YEAR( DimSales[DateKey] ), IF(
+              MONTH(DimSales[DateKey] ) < 10, "0" & MONTH( DimSales[DateKey]
+              ),MONTH(DimSales[DateKey])))
+            </p>
+            <p class="font-weight-bold">Measure</p>
+            <p>
+              sales/person = SUM( DimSales[SalesAmount] ) / DISTINCTCOUNT(
+              DimSales[SalesPersonKey] )
+            </p>
+            <p>
+              aveSales/Month = SUMX( DimSales, DimSales[SalesAmount] ) /
+              DISTINCTCOUNT( DimSales[yearMonth] )
+            </p>
+            <p class="font-weight-bold">Bin</p>
+            <p>
+              saleAmountGrp = SWITCH( INT(DimSales[SalesAmount]/500), 0, "<
+              500", 1, "500 - 999", 2, "1K - 1.5K", 3, "1.5K to 2K", ">2K")
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>DimCustomer</td>
+          <td>
+            <p class="font-weight-bold">Column</p>
+            <p>
+              age = if( ISBLANK( DimCustomer[BirthDate] ), BLANK() , 2010 -
+              year( DimCustomer[BirthDate] ))
+            </p>
+            <p>
+              ratingDesc = SWITCH( DimCustomer[Rating], 1, "1 Extremely
+              Dissatisfied", 2, "2 Dissatisfied", 3, "3 Neutral", 4, "4
+              Satisfied", 5, "5 Extremely Satisfied")
+            </p>
+            <p class="font-weight-bold">Bin group</p>
+            <p>
+              ageGroup = IF(INT( DimCustomer[age]/10 ) >= 8, "80 and above",
+              SWITCH( INT( DimCustomer[age]/10 ), 3, "30 - 39", 4, "40 - 49", 5,
+              "50 - 59", 6, "60 - 69", 7, "70 - 79"))
+            </p>
+            <p>
+              yearIncomeGrp = IF(DimCustomer[CustomerType] == "Company",
+              BLANK(), IF( ISBLANK( DimCustomer[YearlyIncome] ), "Not
+              Disclosed", SWITCH( INT( DimCustomer[YearlyIncome] / 50000), 0,
+              "below 50K", 1, "50K - 99K", 2, "100K - 149K", 3, "150K and above"
+              )))
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>DimSalesPerson</td>
+          <td>
+            <p class="font-weight-bold">Column</p>
+            <p>
+              name = COMBINEVALUES(" ", DimSalesPerson[FirstName],
+              DimSalesPerson[LastName])
+            </p>
+          </td>
+        </tr>
+      </table>
+      <p>Box and Whisker by MAQ Software visual are added to create 
+      the box plot visual. The box plot summarises the sales amount 
+      in the mean, median, outlier, etc.</p>
+      <p>Tyrone Blanco is the top-performing salesperson with $1.092M 
+      and 5723 sales transactions.</p>
+    </div>`;
     }
   },
   name: "ProjectCapstone",
